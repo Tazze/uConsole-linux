@@ -325,6 +325,42 @@ static int axp20x_battery_get_prop(struct power_supply *psy,
 		val->intval *= 1000;
 		break;
 
+	case POWER_SUPPLY_PROP_ENERGY_FULL:
+	case POWER_SUPPLY_PROP_ENERGY_NOW:
+		/* When no battery is present, return 0 */
+		ret = regmap_read(axp20x_batt->regmap, AXP20X_PWR_OP_MODE,
+				  &reg);
+		if (ret)
+			return ret;
+
+		if (!(reg & AXP20X_PWR_OP_BATT_PRESENT)) {
+			val->intval = 0;
+			return 0;
+		}
+
+		if(psp == POWER_SUPPLY_PROP_ENERGY_FULL) {
+			val->intval = 8000000;
+			return 0;
+		}
+
+		ret = regmap_read(axp20x_batt->regmap, AXP20X_FG_RES, &reg);
+		if (ret)
+			return ret;
+
+		if (axp20x_batt->data->has_fg_valid && !(reg & AXP22X_FG_VALID))
+			return -EINVAL;
+
+		val1 = reg & AXP209_FG_PERCENT;
+		if (val1 > 90)
+			val1= 80;
+		else if (val1 < 10)
+			val1 = 0;
+		else
+			val1 -= 10;
+
+		val->intval = val1 * 100000;
+		break;
+
 	default:
 		return -EINVAL;
 	}
