@@ -46,11 +46,11 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
 	cutiepi-panel.dtbo \
 	dacberry400.dtbo \
 	devterm-bt.dtbo \
-+	devterm-misc.dtbo \
-+	devterm-panel.dtbo \
-+	devterm-panel-uc.dtbo \
-+	devterm-pmu.dtbo \
-+	devterm-wifi.dtbo \
+	devterm-misc.dtbo \
+	devterm-panel.dtbo \
+	devterm-panel-uc.dtbo \
+	devterm-pmu.dtbo \
+	devterm-wifi.dtbo \
 	dht11.dtbo \
 	dionaudio-kiwi.dtbo \
 	dionaudio-loco.dtbo \
