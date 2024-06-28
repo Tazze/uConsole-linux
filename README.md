@@ -1,30 +1,5 @@
-Linux kernel
-============
+Linux kernel with patching for Clockwork Pi uConsole
+====================================================
 
-There are several guides for kernel developers and users. These guides can
-be rendered in a number of formats, like HTML and PDF. Please read
-Documentation/admin-guide/README.rst first.
-
-In order to build the documentation, use ``make htmldocs`` or
-``make pdfdocs``.  The formatted documentation can also be read online at:
-
-    https://www.kernel.org/doc/html/latest/
-
-There are various text files in the Documentation/ subdirectory,
-several of them using the Restructured Text markup notation.
-
-Please read the Documentation/process/changes.rst file, as it contains the
-requirements for building and running the kernel, and information about
-the problems which may result by upgrading your kernel.
-
-Build status for rpi-5.15.y:
-[![Pi kernel build tests](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml/badge.svg?branch=rpi-5.15.y)](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml)
-[![dtoverlaycheck](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml/badge.svg?branch=rpi-5.15.y)](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml)
-
-Build status for rpi-6.1.y:
-[![Pi kernel build tests](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml/badge.svg?branch=rpi-6.1.y)](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml)
-[![dtoverlaycheck](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml/badge.svg?branch=rpi-6.1.y)](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml)
-
-Build status for rpi-6.6.y:
-[![Pi kernel build tests](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml/badge.svg?branch=rpi-6.6.y)](https://github.com/raspberrypi/linux/actions/workflows/kernel-build.yml)
-[![dtoverlaycheck](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml/badge.svg?branch=rpi-6.6.y)](https://github.com/raspberrypi/linux/actions/workflows/dtoverlaycheck.yml)
+I am forking https://github.com/raspberrypi/linux to easily get up to date versions of the kernel with the patch from the uConsole repo (https://github.com/clockworkpi/uConsole/blob/master/Code/patch/cm4/20230630/0001-patch-cm4.patch), which can't be applied on a current version of the raspberry kernel due to it depending on a commit from ***APRIL 29, 2021***
+I have applied most of the modifications made by the patch (except the ones for arch/arm64/configs/bcm2711_defconfig because honestly it looks like a load of garbage and I'm trying to see if I can get away with not touching it), however, since they seem to be quick and dirty hacky workarounds with absolutely 0 polish I won't even ***THINK*** about trying to upstream this
